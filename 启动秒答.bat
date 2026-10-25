@@ -26,13 +26,14 @@ if errorlevel 1 (
 echo.
 echo   ============================================
 echo     Vocab Solver
-echo     F7 = select region (do this first)
-echo     F9 = solve
-echo     F8 = quit
+echo     Click the small panel on screen to solve
+echo     Right-click it to re-select the region
+echo     Drag it to move it
+echo     Close this window (or press F8) to quit
 echo   ============================================
 echo.
-echo   If F9 does nothing, close this window and run
-echo   this file as administrator.
+echo   If clicking does nothing, close this window
+echo   and run this file as administrator.
 echo.
 
 "%PY%" -u "%~dp0vocab_solver.py"
