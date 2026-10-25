@@ -1,0 +1,16 @@
+# 统一换行符，避免 Windows/Linux 来回 checkout 产生噪音
+* text=auto
+
+# 批处理必须是 CRLF，否则 cmd 可能解析出错
+*.bat text eol=crlf
+
+*.py    text eol=lf
+*.md    text eol=lf
+*.txt   text eol=lf
+*.csv   text eol=lf
+*.yaml  text eol=lf
+
+# 图片等二进制
+*.png binary
+*.jpg binary
+*.onnx binary
