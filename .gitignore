@@ -12,6 +12,9 @@ vocab_solver_cache.json
 debug_last.png
 debug_ocr.txt
 
+# 本地原始词库数据（只在自己机器上用）
+data/
+
 # 系统
 Thumbs.db
 desktop.ini
