@@ -7,6 +7,7 @@ __pycache__/
 vocab_solver.log
 vocab_solver.log.old
 vocab_solver.crop.json
+vocab_solver.panel.json
 vocab_solver_cache.json
 debug_last.png
 debug_ocr.txt

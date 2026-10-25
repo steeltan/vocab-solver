@@ -46,6 +46,7 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 VOCAB_CSV = os.path.join(BASE, "vocab_bank_大学以上.csv")
 CACHE_FILE = os.path.join(BASE, "vocab_solver_cache.json")
 CROP_FILE = os.path.join(BASE, "vocab_solver.crop.json")
+PANEL_POS_FILE = os.path.join(BASE, "vocab_solver.panel.json")
 LOG_FILE = os.path.join(BASE, "vocab_solver.log")
 OCR_CONFIG = os.path.join(BASE, "ocr_dml.yaml")
 
@@ -382,7 +383,23 @@ class Panel(object):
         w = max(root.winfo_reqwidth(), 150)
         h = root.winfo_reqheight()
         sw = root.winfo_screenwidth()
-        root.geometry("%dx%d+%d+%d" % (w, h, sw - w - 28, 76))
+        sh = root.winfo_screenheight()
+        x, y = sw - w - 28, 76          # 默认右上角
+        try:
+            with open(PANEL_POS_FILE, encoding="utf-8") as f:
+                px, py = json.load(f)[:2]
+            x = min(max(0, int(px)), max(0, sw - w))
+            y = min(max(0, int(py)), max(0, sh - h))
+        except Exception:
+            pass
+        root.geometry("%dx%d+%d+%d" % (w, h, x, y))
+
+    def _save_pos(self):
+        try:
+            with open(PANEL_POS_FILE, "w", encoding="utf-8") as f:
+                json.dump([self.root.winfo_x(), self.root.winfo_y()], f)
+        except Exception:
+            pass
 
     @staticmethod
     def _foreground():
@@ -445,7 +462,9 @@ class Panel(object):
         self._press = None
         self._moved = False
         self._update_rect()
-        if not moved:
+        if moved:
+            self._save_pos()
+        else:
             self._click()
 
     def _on_right_click(self, e):
