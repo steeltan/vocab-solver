@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# 运行时生成
+vocab_solver.log
+vocab_solver.log.old
+vocab_solver.crop.json
+vocab_solver_cache.json
+debug_last.png
+debug_ocr.txt
+
+# 系统
+Thumbs.db
+desktop.ini
+.DS_Store
